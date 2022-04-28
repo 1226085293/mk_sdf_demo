@@ -1,18 +1,16 @@
 {
-    "version": "0.2.0",
-    "tasks": [
-        {
-            "label": "CocosCreator compile",
-            "command": "curl",
-            "args": [
-                "http://localhost:7456/asset-db/refresh"
-            ],
-            "type": "shell",
-            "isBackground": true,
-            "group": "build",
-            "presentation": {
-                "reveal": "always"
-            }
-        }
-    ]
+	"version": "0.2.0",
+	"tasks": [
+		{
+			"label": "CocosCreator compile",
+			"command": "curl",
+			"args": ["http://localhost:7457/asset-db/refresh"],
+			"type": "shell",
+			"isBackground": true,
+			"group": "build",
+			"presentation": {
+				"reveal": "always"
+			}
+		}
+	]
 }
