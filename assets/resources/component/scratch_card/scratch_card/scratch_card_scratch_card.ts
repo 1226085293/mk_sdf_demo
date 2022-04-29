@@ -59,5 +59,7 @@ export class scratch_card_scratch_card extends Component {
 			this._list_length_n -= 2;
 		}
 		cc.log(this._touch_pos_v4s);
+
+		// cc.RenderTexture.prototype.readPixels()
 	}
 }
