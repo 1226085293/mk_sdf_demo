@@ -7,4 +7,7 @@ export class main extends Component {
 	public button_head(): void {
 		cc.resources.loadScene("head");
 	}
+	public button_sdf_texture(): void {
+		cc.resources.loadScene("sdf_texture");
+	}
 }
