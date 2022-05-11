@@ -26,9 +26,19 @@
   ],
   "_props": [
     {
+      "alphaThreshold": 0,
       "sdf_texture": {
-        "__uuid__": "3f41aa74-2c92-4eaa-8b89-bf7c08bb839c@6c48a",
+        "__uuid__": "b0946300-c524-492e-beb3-56aab2eff617@6c48a",
         "__expectedType__": "cc.Texture2D"
+      },
+      "stroke_radius_f": 1,
+      "outer_radius_f": 20,
+      "outer_color_f": {
+        "__type__": "cc.Vec4",
+        "x": 0,
+        "y": 1,
+        "z": 1,
+        "w": 1
       }
     }
   ]

@@ -17,8 +17,18 @@ CCEffect %{
         cullMode: none
       properties:
         alphaThreshold: { value: 0.5 }
-        radius_f: { value: 10 }
+        # sdf 纹理
         sdf_texture: { value: grey }
+        # sdf 半径
+        sdf_radius_f: { value: 10.0 }
+        # 描边半径
+        stroke_radius_f: { value: 10.0 }
+        # 描边颜色
+        stroke_color_f: { value: [1, 1, 1, 1] }
+        # 外发光半径
+        outer_radius_f: { value: 10.0 }
+        # 外发光颜色
+        outer_color_f: { value: [1, 1, 1, 1] }
 }%
 
 CCProgram sprite-vs %{
@@ -36,11 +46,6 @@ CCProgram sprite-vs %{
 
   out vec4 color;
   out vec2 uv0;
-
-  // 传递的数据
-  // uniform Float {
-  //   float rounded_f;
-  // }
 
   vec4 vert () {
     vec4 pos = vec4(a_position, 1);
@@ -79,11 +84,24 @@ CCProgram sprite-fs %{
 
   in vec4 color;
 
-  // 传递的属性
+  // 传递的 Float
   uniform Float {
+    // sdf 半径
+    float sdf_radius_f;
     // 描边半径
-    float radius_f;
+    float stroke_radius_f;
+    // 外发光半径
+    float outer_radius_f;
   };
+
+  // 传递的 vec4
+  uniform Vec4 {
+    // 描边颜色
+    vec4 stroke_color_f;
+    // 外发光颜色
+    vec4 outer_color_f;
+  };
+
   // sdf 纹理
   uniform sampler2D sdf_texture;
 
@@ -93,6 +111,18 @@ CCProgram sprite-fs %{
     layout(set = 2, binding = 11) uniform sampler2D cc_spriteTexture;
   #endif
 
+  // 外发光
+  vec4 outer_glow(float dist_f_, vec4 color_v4_, vec4 input_color_v4_, float radius_f_) {
+    // dist_f_ > radius_f_ 结果为 0
+    // dist_f_ < 0 结果为 1
+    // dist_f_ > 0 && dist_f_ < radius_f_ 则 dist_f_ 越大 a_f 越小，范围 0 ~ 1
+    float a_f = abs(clamp(dist_f_ / radius_f_, 0.0, 1.0) - 1.0);
+    // pow：平滑 a_f
+    // max and min：防止在物体内部渲染
+    float b_f = min(max(0.0, dist_f_), pow(a_f, 5.0));
+    return color_v4_ + input_color_v4_ * b_f;
+  }
+  
   vec4 frag () {
     vec4 o = vec4(1, 1, 1, 1);
 
@@ -103,20 +133,17 @@ CCProgram sprite-fs %{
         o.r = o.g = o.b = gray;
       #endif
 
+      vec4 tex1 = CCSampleWithAlphaSeparated(sdf_texture, uv0);
+      // 距离场，使用采样得到 sdf 纹理上的 color
+      float dist_f = (1.0 - tex1.r) * sdf_radius_f;
 
-      vec4 color2 = color;
-      // 以图片中心点为（0,0）点的渲染坐标
-      vec2 render_v2 = (uv0 - vec2(0.5)) * 2.0;
+      // 描边
+      o = mix(o, stroke_color_f, abs(clamp(dist_f - stroke_radius_f, 0.0, 1.0) - clamp(dist_f, 0.0, 1.0)));
+      
+      // 外发光
+      o = outer_glow(dist_f, o, outer_color_f, outer_radius_f);
 
-      // 进行采样获取 sdf 纹理上的 color
-      255.0 - CCSampleWithAlphaSeparated(sdf_texture, uv0).a;
-      // 距离场
-      // float dist_f = 0.1;
-
-      // o = mix(o, vec4(1.0, 1.0, 0.0, 1.0), abs(clamp(dist_f - 5.0, 0.0, 1.0) - clamp(dist_f, 0.0, 1.0)));
-
-
-      o *= color2;
+      o *= color;
     #endif
     ALPHA_TEST(o);
     return o;

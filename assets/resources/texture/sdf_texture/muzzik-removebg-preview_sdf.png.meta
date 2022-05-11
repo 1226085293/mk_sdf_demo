@@ -2,7 +2,7 @@
   "ver": "1.0.22",
   "importer": "image",
   "imported": true,
-  "uuid": "7f43c23e-caa2-47db-804b-d0d16be7990f",
+  "uuid": "b0946300-c524-492e-beb3-56aab2eff617",
   "files": [
     ".png",
     ".json"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "7f43c23e-caa2-47db-804b-d0d16be7990f@6c48a",
-      "displayName": "muzzik",
+      "uuid": "b0946300-c524-492e-beb3-56aab2eff617@6c48a",
+      "displayName": "muzzik-removebg-preview_sdf",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "7f43c23e-caa2-47db-804b-d0d16be7990f",
+        "imageUuidOrDatabaseUri": "b0946300-c524-492e-beb3-56aab2eff617",
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
@@ -33,29 +33,29 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "7f43c23e-caa2-47db-804b-d0d16be7990f@f9941",
-      "displayName": "muzzik",
+      "uuid": "b0946300-c524-492e-beb3-56aab2eff617@f9941",
+      "displayName": "muzzik-removebg-preview_sdf",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
         "trimType": "auto",
         "trimThreshold": 1,
         "rotated": false,
-        "offsetX": -6,
-        "offsetY": -5,
-        "trimX": 24,
-        "trimY": 38,
-        "width": 60,
-        "height": 54,
-        "rawWidth": 120,
-        "rawHeight": 120,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 499,
+        "height": 500,
+        "rawWidth": 499,
+        "rawHeight": 500,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
-        "packable": true,
+        "packable": false,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "7f43c23e-caa2-47db-804b-d0d16be7990f@6c48a",
+        "imageUuidOrDatabaseUri": "b0946300-c524-492e-beb3-56aab2eff617@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "type": "sprite-frame",
     "hasAlpha": true,
-    "redirect": "7f43c23e-caa2-47db-804b-d0d16be7990f@f9941"
+    "redirect": "b0946300-c524-492e-beb3-56aab2eff617@f9941"
   }
 }
