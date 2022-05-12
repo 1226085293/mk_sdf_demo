@@ -133,9 +133,8 @@ CCProgram sprite-fs %{
         o.r = o.g = o.b = gray;
       #endif
 
-      vec4 tex1 = CCSampleWithAlphaSeparated(sdf_texture, uv0);
       // 距离场，使用采样得到 sdf 纹理上的 color
-      float dist_f = (1.0 - tex1.r) * sdf_radius_f;
+      float dist_f = (1.0 - CCSampleWithAlphaSeparated(sdf_texture, uv0).r) * sdf_radius_f;
 
       // 描边
       o = mix(o, stroke_color_f, abs(clamp(dist_f - stroke_radius_f, 0.0, 1.0) - clamp(dist_f, 0.0, 1.0)));
