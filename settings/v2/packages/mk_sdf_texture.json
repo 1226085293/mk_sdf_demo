@@ -1,3 +1,4 @@
 {
-  "sdf_radius_n": 50
+  "sdf_radius_n": 100,
+  "sdf_cutoff_n": 0
 }

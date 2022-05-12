@@ -31,13 +31,21 @@
         "__uuid__": "b0946300-c524-492e-beb3-56aab2eff617@6c48a",
         "__expectedType__": "cc.Texture2D"
       },
-      "stroke_radius_f": 1,
-      "outer_radius_f": 20,
-      "outer_color_f": {
+      "sdf_radius_f": 100,
+      "stroke_radius_f": 5,
+      "stroke_color_f": {
         "__type__": "cc.Vec4",
         "x": 0,
         "y": 1,
         "z": 1,
+        "w": 1
+      },
+      "outer_radius_f": 100,
+      "outer_color_f": {
+        "__type__": "cc.Vec4",
+        "x": 1,
+        "y": 1,
+        "z": 0,
         "w": 1
       }
     }
