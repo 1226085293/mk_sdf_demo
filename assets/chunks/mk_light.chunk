@@ -1,6 +1,6 @@
 // 光绘制模块
 
-#include <cc-global>
+#include <builtin/uniforms/cc-global>
 #include <mk_dist_field_func>
 
 // 光

@@ -33,20 +33,20 @@
       },
       "sdf_radius_f": 100,
       "stroke_radius_f": 5,
-      "stroke_color_f": {
-        "__type__": "cc.Vec4",
-        "x": 0,
-        "y": 1,
-        "z": 1,
-        "w": 1
+      "stroke_color_v4": {
+        "__type__": "cc.Color",
+        "r": 0,
+        "g": 41,
+        "b": 255,
+        "a": 124
       },
       "outer_radius_f": 100,
-      "outer_color_f": {
-        "__type__": "cc.Vec4",
-        "x": 1,
-        "y": 1,
-        "z": 0,
-        "w": 1
+      "outer_color_v4": {
+        "__type__": "cc.Color",
+        "r": 0,
+        "g": 255,
+        "b": 41,
+        "a": 255
       }
     }
   ]

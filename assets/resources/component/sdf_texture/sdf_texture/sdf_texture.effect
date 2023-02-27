@@ -24,21 +24,21 @@ CCEffect %{
         # 描边半径
         stroke_radius_f: { value: 10.0 }
         # 描边颜色
-        stroke_color_f: { value: [1, 1, 1, 1] }
+        stroke_color_v4: { value: [1, 1, 1, 1], editor: { type: color } }
         # 外发光半径
         outer_radius_f: { value: 10.0 }
         # 外发光颜色
-        outer_color_f: { value: [1, 1, 1, 1] }
+        outer_color_v4: { value: [1, 1, 1, 1], editor: { type: color } }
 }%
 
 CCProgram sprite-vs %{
   precision highp float;
-  #include <cc-global>
+  #include <builtin/uniforms/cc-global>
   #if USE_LOCAL
-    #include <cc-local>
+    #include <builtin/uniforms/cc-local>
   #endif
   #if SAMPLE_FROM_RT
-    #include <common>
+    #include <common/common-define>
   #endif
   in vec3 a_position;
   in vec2 a_texCoord;
@@ -74,9 +74,9 @@ CCProgram sprite-vs %{
 
 CCProgram sprite-fs %{
   precision highp float;
-  #include <embedded-alpha>
-  #include <alpha-test>
-	#include <cc-global>
+  #include <builtin/internal/embedded-alpha>
+  #include <builtin/internal/alpha-test>
+	#include <builtin/uniforms/cc-global>
 
   #include "mk_dist_field_func"
   #include "mk_dist_field_transform"
@@ -97,9 +97,9 @@ CCProgram sprite-fs %{
   // 传递的 vec4
   uniform Vec4 {
     // 描边颜色
-    vec4 stroke_color_f;
+    vec4 stroke_color_v4;
     // 外发光颜色
-    vec4 outer_color_f;
+    vec4 outer_color_v4;
   };
 
   // sdf 纹理
@@ -137,10 +137,10 @@ CCProgram sprite-fs %{
       float dist_f = (1.0 - CCSampleWithAlphaSeparated(sdf_texture, uv0).r) * sdf_radius_f;
 
       // 描边
-      o = mix(o, stroke_color_f, abs(clamp(dist_f - stroke_radius_f, 0.0, 1.0) - clamp(dist_f, 0.0, 1.0)));
+      o = mix(o, stroke_color_v4, abs(clamp(dist_f - stroke_radius_f, 0.0, 1.0) - clamp(dist_f, 0.0, 1.0)));
       
       // 外发光
-      o = outer_glow(dist_f, o, outer_color_f, outer_radius_f);
+      o = outer_glow(dist_f, o, outer_color_v4, outer_radius_f);
 
       o *= color;
     #endif

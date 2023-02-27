@@ -1,10 +1,10 @@
 // 常量定义
 
 // 最大光数量
-#define max_light_length 10
+#pragma define max_light_length 10
 // 最大阴影步进，影响阴影生成距离，光源范围过大导致阴影部分消失可增大此常量
-#define max_shadow_step 64
+#pragma define max_shadow_step 64
 // 最大圆形数量
-#define max_circle_size 12
+#pragma define max_circle_size 12
 // 最大矩形数量
-#define max_box_size 12
+#pragma define max_box_size 12
